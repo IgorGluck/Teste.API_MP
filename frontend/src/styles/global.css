@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme {
+  --color-roblox-bg: #030712;
+  --color-roblox-glow: #1e3a8a;
+  --color-roblox-green: #10b981;
+  --color-roblox-text: #f9fafb;
+  --color-roblox-muted: #9ca3af;
+  
+  /* Font */
+  --font-sans: "Inter", system-ui, sans-serif;
+  
+  --animate-twinkle: twinkle 3s ease-in-out infinite;
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+}
+
+/* Reset CSS */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-cobalt-bg);
+  color: var(--color-cobalt-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
