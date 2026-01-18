@@ -1,5 +1,6 @@
+import 'dotenv/config';
 import cors from 'cors';
-import express, { query } from 'express';
+import express from 'express';
 import nodemailer from 'nodemailer';
 import { MercadoPagoConfig, Preference, Payment } from 'mercadopago';
 
@@ -7,8 +8,8 @@ import { MercadoPagoConfig, Preference, Payment } from 'mercadopago';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'email@gmail.com', //  e-mail
-    pass: 'xxxx xxxx xxxx xxxx'  
+   user: process.env.EMAIL_USER,
+   pass: process.env.EMAIL_PASS 
   }
 });
 
@@ -16,7 +17,7 @@ const transporter = nodemailer.createTransport({
 async function enviarProduto(emailCliente: string) {
   try {
     const mailOptions = {
-      from: '"Vendas Blox Fruit" <seu-email@gmail.com>',
+      from: '"Vendas Blox Fruit" <${process.env.EMAIL_USER}>',
       to: emailCliente,
       subject: 'Seu curso chegou! Aproveite o acesso vitalício',
       html: `
@@ -43,7 +44,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const client = new MercadoPagoConfig({ accessToken: 'TEST-3398200168239644-050611-7dffa4e01f38252f1e413cfaecf8ae84-419038165' });
+const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN || '' });
 
 export const createPaymentPreference = async (courseData: { title: string, price: number }) => {
   const preference = new Preference(client);
@@ -61,14 +62,14 @@ app.post('/criar-pagamento', async (req, res) => {
             id: 'curso-blox-fruit',
             title: 'Curso Blox Fruit', 
             quantity: 1,
-            unit_price: 35.90, 
+            unit_price: 1.0, 
             currency_id: 'BRL',
           }
         ],
         back_urls: {
-          success: 'http://localhost:4324/',
-          failure: 'http://localhost:4324/',
-          pending: 'http://localhost:4324/',
+          success: 'http://localhost:4321/',
+          failure: 'http://localhost:4321/',
+          pending: 'http://localhost:4321/',
         },
       }
     });

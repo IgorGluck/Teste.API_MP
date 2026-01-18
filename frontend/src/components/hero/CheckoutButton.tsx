@@ -43,7 +43,7 @@ export default function CheckoutButton() {
       {loading ? (
         <span>Processando...</span>
       ) : (
-        <span>Quero acesso vitalício por R$ 35,90</span>
+        <span>Quero acesso vitalício por R$ 1.0</span>
       )}
     </button>
   );
