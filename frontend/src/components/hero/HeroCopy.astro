@@ -1,0 +1,25 @@
+---
+import { styles } from '../../styles/components';
+
+interface Props {
+  title: string;
+  subtitleHTML: string;
+  footerText: string;
+}
+
+const { title, subtitleHTML, footerText } = Astro.props;
+---
+
+<h1 class={styles.text.h1}>
+  {title}
+</h1>
+
+<p class={styles.text.p} set:html={subtitleHTML} />
+
+<div class="w-full flex justify-center">
+  <slot name="cta" />
+</div>
+
+<p class={styles.text.footer}>
+  {footerText}
+</p>
