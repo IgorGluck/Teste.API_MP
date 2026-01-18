@@ -4,7 +4,7 @@ import { MercadoPagoConfig, Preference } from 'mercadopago';
 
 
 const app = express();
-app.use(cors()); 
+app.use(cors());
 app.use(express.json());
 
 
@@ -31,28 +31,22 @@ app.post('/criar-pagamento', async (req, res) => {
           }
         ],
         back_urls: {
-          success: 'http://localhost:4321/?status=success',
-          failure: 'http://localhost:4321/?status=error',
+          success: 'http://localhost:4324/',
+          failure: 'http://localhost:4324/',
+          pending: 'http://localhost:4324/',
         },
-        auto_return: 'approved',
       }
     });
 
-    
     res.json({ url: result.init_point });
-} 
-  catch(error){
-    console.error(error);
-   res.status(500).json({ error: 'Erro na preferencia' });
+  } catch (error) {
+    
+    console.error('Erro detalhado do MP:', error);
+    res.status(500).json({ error: 'Erro na preferência' });
   }
 });
 
-
- // definindo a porta do servidor   
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
-
-
-

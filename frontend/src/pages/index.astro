@@ -1,11 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import HeroWrapper from '../components/hero/HeroWrapper.astro';
+import HeroCopy from '../components/hero/HeroCopy.astro';
+import CheckoutButton from '../components/hero/CheckoutButton.tsx';
 ---
 
 <Layout>
-	<h1>hello, world</h1>
+	<HeroWrapper>
+		<HeroCopy 
+			title="Domine Qualquer Tecnologia e Dobre seu Salário."
+			footerText="Pagamento único. Acesso imediato."
+			subtitleHTML={`
+				Tenha acesso vitalício a +3.500 cursos completos (Front-end, Back-end, Data Science, Design e mais). 
+				Tudo o que você precisa para alavancar sua carreira. <br class="hidden md:block" />
+				<span class="line-through decoration-gray-600 text-gray-600">De R$ 71,80</span> por apenas <span class="text-white font-semibold">R$ 35,90</span>.
+			`}
+		>
+
+			<CheckoutButton client:load slot="cta" />
+
+		</HeroCopy>
+	</HeroWrapper>
 </Layout>
