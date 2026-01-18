@@ -1,3 +1,14 @@
+# Ignorar variáveis de ambiente (contém senhas e chaves)
 .env
+.env.local
+
+# Ignorar dependências (são instaladas via npm install)
 node_modules/
+
+# Ignorar pastas de build/compilação
 dist/
+build/
+
+# Ignorar ficheiros do sistema e logs
+npm-debug.log*
+.DS_Store
